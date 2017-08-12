@@ -17,7 +17,7 @@ base = declarative_base()
 # Ubuntu, Apache, PostgreSQL config
 # TODO change password
 engine = create_engine(
-    'postgresql+psycopg2://catalog:password@localhost/catalog')
+    'postgresql+psycopg2://restaurant:db-password@localhost/restaurant')
 
 
 db_session = scoped_session(sessionmaker(autocommit=False,
