@@ -1,0 +1,44 @@
+@import "../global/_mixins";
+
+
+.hero-image {
+
+  position: relative;
+  img {
+    max-height: 1000px;
+    display: block;
+    width: 100%;
+    background-size: cover;
+    margin: 0 auto;
+    background-position: center;
+  }
+  .hero-content {
+    position: absolute;
+    top: 30%;
+    transform: translateY(-50%);
+    left: 0;
+    width: 100%;
+    text-align: center;
+  }
+  .hero-title {
+    font-weight: 300;
+    color: #F05f40;
+    font-size: 2.4rem;
+    @include atSmall{
+      font-size: 8.5rem;
+    }
+  }
+  .hero-subtitle{
+    top: 40%;
+    margin: 0;
+    color: white;
+    font-weight: 300;
+  }
+}
+
+
+.wrapper{
+  background-color: #101010 !important;
+}
+
+

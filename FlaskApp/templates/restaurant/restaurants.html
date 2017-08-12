@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+    <div id="wrapper">
+        <div id="sidebar-menu">
+            <legend>Filter By restaurant</legend>
+            <ul class="sidebar-nav">
+                {%  if restaurants %}
+                {% for restaurant in restaurants %}
+                    <li><a href="#">{{ restaurant.name }}</a></li>
+                {% endfor %}
+                {% endif %}
+            </ul>
+        <legend>Filter By Location</legend>
+            <ul class="sidebar-nav">
+                {%  if restaurants %}
+                {% for city in address %}
+                    <li><a href="#">{{ city.city }}</a></li>
+                {% endfor %}
+                {% endif %}
+            </ul>
+        <legend>Filter By Food</legend>
+            <ul class="sidebar-nav">
+                {%  if restaurants %}
+                {% for food in restaurants %}
+                    <li><a href="#">{{ food.food_type }}</a></li>
+                {% endfor %}
+                {% endif %}
+            </ul>
+        </div>
+
+     <div id="content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                {% if error %}
+                    <h3>{{ error }}</h3>
+                {% endif %}
+            </div>
+            <div class = 'flash'>
+		      {% with messages = get_flashed_messages() %}
+                {% if messages %}
+
+                    <ul>
+                    {% for message in messages %}
+                        <div class="alert alert-warning">
+                            <li> <strong> {{ message }} </strong> </li>
+                        </div>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+              {% endwith %}
+
+            </div>
+            <div class="row">
+                <div class="col-lg-offset-1 col-md-6 col-lg-offset-5">
+                    <legend><h1>Restaurants</h1></legend>
+                    <a href="#" class="btn btn-primary pull-right" id="menu-toggle">Filters</a>
+                </div>
+            </div>
+            <div class="row restaurant-list">
+            <div class="col-lg-offset-1 col-md-6 col-lg-offset-5">
+                {%  if restaurants %}
+                {% for restaurant in restaurants %}
+                    <div class="row well">
+                        <div class="col-md-4">
+                            <img class="img-responsive" src="http://placehold.it/350x150">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="col-md-6">
+                                <h3>{{ restaurant.name }}</h3>
+                                <p>{{ restaurant.food_type }} food</p>
+                                <br>
+                                <p>Read Reviews</p>
+                            </div>
+                            <div class="col-md-4 pull-right">
+                                <a href="{{ url_for('.restaurant_detail', restaurant_id = restaurant.id)}}" class="btn btn-primary" id="menu-toggle">Menu</a>
+                                <a href="{{ url_for('.edit_restaurant', restaurant_id = restaurant.id)}}" class="btn btn-success" id="menu-toggle">Edit</a>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+                {% endif %}
+            </div>
+            </div>
+        </div>
+     </div>
+    </div>
+
+{% endblock %}

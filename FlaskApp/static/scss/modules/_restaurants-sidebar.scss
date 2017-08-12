@@ -1,0 +1,57 @@
+@import "../global/_variables";
+
+// sidebar menu properties for restaurants template */
+#sidebar-menu{
+  z-index: 1;
+  position: absolute;
+  width: 0;
+  height: 100%;
+  overflow-y: hidden;
+  background: $darkblue;
+  opacity: 0.9;
+  padding-top: 50px;
+}
+
+// change the width of the sidebar to display it  */
+#wrapper.menuDisplayed #sidebar-menu{
+
+  width: 250px;
+
+}
+#wrapper.menuDisplayed #content-wrapper{
+
+  padding-left: 250px;
+
+}
+
+
+
+.sidebar-nav{
+  padding: 0;
+  list-style: none;
+
+}
+
+.sidebar-nav li {
+    text-indent: 20px;
+    line-height: 40px;
+  }
+
+.sidebar-nav a {
+    display: block;
+    text-decoration: none;
+    color: $sectiongray;
+  }
+
+
+.sidebar-nav li a:hover{
+  background: #16A085;
+}
+
+legend {
+  color: $sectiongray;
+  padding-top: 20px;
+  padding-left: 8px;
+}
+
+

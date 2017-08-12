@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block content %}
+    <div class="container">
+	<form class=" well form-horizontal top-margin" method="POST" action="{{url_for('.edit_menu_item', restaurant_id=restaurant_id, menu_id=menu_id)}}">
+        <legend><h1>Edit Menu Item</h1></legend>
+	    {{ form.csrf_token }}
+	    {{ wtf.form_field(form.name,form_type="horizontal", horizontal_columns=('lg', 4, 4), value=menu.name)}}
+	    {{ wtf.form_field(form.price, form_type="horizontal", horizontal_columns=('lg', 4, 4), value=menu.price) }}
+        {{ wtf.form_field(form.course, form_type="horizontal", horizontal_columns=('lg', 4, 4)) }}
+        {{ wtf.form_field(form.description, form_type="horizontal", horizontal_columns=('lg', 4, 4), value=menu.description) }}
+
+        <input type="submit" class="btn btn-primary" value="Update">
+        <a class="btn btn-danger" href="{{ url_for('restaurant_b.restaurant_detail', restaurant_id=restaurant_id )}}">Cancel</a>
+
+	</form>
+    </div>
+    <div class="container">
+
+    </div>
+{% endblock %}

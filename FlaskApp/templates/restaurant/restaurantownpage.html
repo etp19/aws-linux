@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="hero-image">
+                <img src="/static/img/restaurant-1920x1080-opacity.jpg">
+                <div class="wrapper">
+                    <h1 class="hero-content hero-title">{{ restaurant.name }}</h1>
+                    <h2 class="hero-content hero-subtitle">Official Restaurant Page</h2>
+                    <nav class="navbar navbar-inverse" role="navigation">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                    data-target=".navbar-ex2-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">{{ restaurant.name }}</a>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse navbar-ex2-collapse">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="#">Menu</a></li>
+                                <li><a href="#">Contact Us</a></li>
+                                {% if 'username' in session %}
+                                {% if restaurant.user_id == session['user_id'] %}
+                                    <li><a href="{{ url_for('restaurant_b.edit_restaurant', restaurant_id = restaurant.id) }}">Edit Restaurant</a></li>
+                                    <li><a href="{{ url_for('restaurant_b.delete_restaurant', restaurant_id = restaurant.id) }}">Delete Restaurant</a></li>
+                                    <li><a href="{{ url_for('menu_b.create_menu_restaurant', restaurant_id = restaurant.id) }}">New Menu</a></li>
+                                {% endif %}
+                                {% endif %}
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="active"><a href="#">About</a></li>
+                            </ul>
+                        </div><!-- /.navbar-collapse -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 title-about">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <h2 class="text-center">About Us</h2>
+                        <hr>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 subtitle-about">
+                    <p class="text-center">{{ restaurant.description }}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="menu">
+        <div class="container">
+        <div class="row">
+            <div class="col-md-12 title-menu">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <h2 class="text-center">Our Menu</h2>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+        </div>
+            <div class="row">
+            <div class="col-md-12 subtitle-menu">
+                {% for item in items %}
+                <div class="col-md-6 equal margin-b">
+                    <div class="well equal">
+                        <h4 class="pull-right">$ {{ item.price }}</h4>
+                        <h4>{{ item.name }}</h4>
+                        <p>{{ item.description }}</p>
+                        <div class="btn-toolbar">
+                            <a class="pull-right" href="{{ url_for('menu_b.edit_menu_item', restaurant_id=restaurant.id, menu_id=item.id) }}"><button class="btn btn-primary">Edit</button></a>
+                            <a class="pull-right margin-btn" href="{{ url_for('menu_b.delete_menu_item', restaurant_id=restaurant.id, menu_id=item.id) }}"><button class="btn btn-danger">delete</button></a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            </div>
+        </div>
+    </section>
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <h2 class="text-center">Contact Us</h2>
+                        <hr>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+            </div>
+            <div class="row">
+                <ul class="nav ">
+                    <li><h4>Email: {{ restaurant.email }} </h4></li>
+                    <li><h4>Phone: {{ restaurant.phone }}</h4></li>
+                    <li><h4>Location: {{ address.street }} {{ address.city }} {{ address.state }} {{ address.zip_code }}</h4></li>
+                </ul>
+            </div>
+        </div>
+
+    </section>
+
+
+
+{% endblock %}

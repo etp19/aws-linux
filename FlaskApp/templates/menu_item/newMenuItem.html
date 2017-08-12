@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block content %}
+    <div class="container">
+	<form class=" well form-horizontal top-margin" method="POST">
+        <legend><h1>Create New Menu Item</h1></legend>
+	    {{ form.csrf_token }}
+	    {{ wtf.form_field(form.name,form_type="horizontal", horizontal_columns=('lg', 4, 4))}}
+	    {{ wtf.form_field(form.price, form_type="horizontal", horizontal_columns=('lg', 4, 4)) }}
+        {{ wtf.form_field(form.course, form_type="horizontal", horizontal_columns=('lg', 4, 4)) }}
+        {{ wtf.form_field(form.description, form_type="horizontal", horizontal_columns=('lg', 4, 4)) }}
+
+        <input type="submit" class="btn btn-primary" value="Create">
+        <a class="btn btn-danger" href="{{ url_for('restaurant_b.show_restaurants') }}">Cancel</a>
+
+	</form>
+    </div>
+    <div class="container">
+
+    </div>
+{% endblock %}

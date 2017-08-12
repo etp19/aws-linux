@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+    <form method="POST" action="{{ url_for('.delete_menu_item', restaurant_id=restaurant_id, menu_id=menu.id) }}">
+        <h1 class="featurette-heading">Are you sure that you want to delete <span class="text-muted">{{ menu.name }}</span> from your menu ?</h1>
+        <button type="submit" class="btn btn-success">Yes Delete</button>
+        <a class="btn btn-danger" href="{{ url_for('restaurant_b.show_restaurants') }}">Cancel</a>
+    </form>
+    </div>
+{% endblock %}
